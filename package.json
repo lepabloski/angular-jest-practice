@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverege": "jest --coverege"
+    "test:coverage": "jest --coverage"
   },
   "private": true,
   "dependencies": {

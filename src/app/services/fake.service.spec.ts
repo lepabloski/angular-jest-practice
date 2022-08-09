@@ -11,7 +11,9 @@ describe('FakeService', () => {
 
   beforeEach(() => {
     HttpClientSpy = {
+      // this is the way to mock methods in this fake http service
       get: jest.fn(),
+      post: jest.fn(),
     };
     // TestBed.configureTestingModule({});
     // service = TestBed.inject(FakeService);
@@ -95,5 +97,18 @@ describe('FakeService', () => {
     expect(HttpClientSpy.get).toBeCalledTimes(1);
     // and that the url is passed as a parameter
     expect(HttpClientSpy.get).toHaveBeenCalledWith(url);
+  });
+
+  // post request testing
+  it('Testing postDataV1', () => {
+    // data
+    const command = 'testing';
+    // response
+    const res = 'Sometesting';
+    // url endpoint
+    const url = 'https://jsonplaceholder.typicode.com/todos/1';
+    jest.spyOn(HttpClientSpy, 'post').mockReturnValue(of(res));
+    service.postDataV1(command);
+    expect(HttpClientSpy.post).toBeCalledTimes(1);
   });
 });

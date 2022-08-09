@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 
@@ -18,6 +22,16 @@ export class FakeService {
         tap(console.log),
         catchError(this._handleError('Failed fetch error'))
       );
+  }
+  //
+  postDataV1(data: any): Observable<any> {
+    const url = 'https://jsonplaceholder.typicode.com/todos/1';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+      }),
+    };
+    return this.http.post(data, url, httpOptions);
   }
 
   private _handleError<T>(operation = 'operation') {
